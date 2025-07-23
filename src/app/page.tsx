@@ -1,103 +1,169 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import Image from 'next/image';
+import { ShieldCheck, Sword, Medal, Map } from 'lucide-react';
+
+export default function HomePage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-purple-800 to-black text-white py-24 px-6">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 items-center gap-10">
+          <Image
+            src="/hero-image.jpg"
+            alt="Game hero"
+            width={500}
+            height={500}
+            className="w-full"
+          />
+          <div>
+            <h1 className="text-5xl font-bold mb-6">Enter the GameVerse</h1>
+            <p className="mb-6 text-lg">
+              Choose your faction. Upgrade your gear. Conquer realms and earn rewards in our play-to-earn universe.
+            </p>
+            <a
+              href="#classes"
+              className="bg-purple-600 hover:bg-purple-700 px-6 py-3 text-white rounded-lg font-bold"
+            >
+              Choose Your Class
+            </a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+      </section>
+
+      {/* Game Features */}
+      <section className="bg-gray-900 text-white py-20 px-6">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-10">Game Features</h2>
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              { icon: <ShieldCheck size={40} />, title: 'Secure NFTs' },
+              { icon: <Sword size={40} />, title: 'Weapon Crafting' },
+              { icon: <Medal size={40} />, title: 'Ranked Rewards' },
+              { icon: <Map size={40} />, title: 'Open World Map' }
+            ].map((f, i) => (
+              <div key={i} className="bg-gray-800 p-6 rounded-lg text-center">
+                <div className="flex justify-center mb-4 text-purple-400">
+                  {f.icon}
+                </div>
+                <h3 className="text-xl font-semibold">{f.title}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Character Classes */}
+      <section
+        id="classes"
+        className="py-20 px-6 bg-gradient-to-b from-black to-gray-900 text-white"
+      >
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold mb-10 text-center">Character Classes</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                name: 'Warrior',
+                image: '/class-warrior.jpg',
+                desc: 'Front-line tank with high defense and melee damage.'
+              },
+              {
+                name: 'Mage',
+                image: '/class-mage.jpeg',
+                desc: 'Master of elemental magic and crowd control.'
+              },
+              {
+                name: 'Rogue',
+                image: '/class-rogue.jpeg',
+                desc: 'Stealth assassin with high critical damage.'
+              }
+            ].map((c) => (
+              <div key={c.name} className="bg-gray-800 rounded-lg overflow-hidden shadow-md">
+                <Image src={c.image} alt={c.name} width={500} height={300} />
+                <div className="p-4">
+                  <h3 className="text-xl font-bold mb-2">{c.name}</h3>
+                  <p className="text-sm text-gray-300">{c.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section
+        id="community"
+        className="py-24 bg-purple-700 text-white text-center"
+      >
+        <h2 className="text-3xl font-bold mb-4">Join the GameVerse Community</h2>
+        <p className="mb-6">
+          Connect with thousands of players. Trade. Chat. Compete.
+        </p>
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#"
+          className="bg-black px-6 py-3 rounded-lg text-white font-semibold hover:bg-gray-900"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
+          Join Discord
         </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+      {/* Community Voices */}
+      <section className="bg-gray-950 text-white py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12">What Players Say</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: 'ShadowKnight',
+                comment: 'The best PvP I’ve ever played — addictive and strategic.',
+                avatar: '/avatar/avatar1.jpeg'
+              },
+              {
+                name: 'ArcaneMage',
+                comment: 'Stunning design. Finally a game that pays back.',
+                avatar: '/avatar/avatar2.jpeg'
+              },
+              {
+                name: 'StealthFox',
+                comment: 'I’ve already made 3 NFTs just by playing!',
+                avatar: '/avatar/avatar3.jpeg'
+              }
+            ].map((t, i) => (
+              <div key={i} className="bg-gray-800 p-6 rounded-lg shadow-md">
+                <div className="flex items-center gap-4 mb-4">
+                  <Image
+                    src={t.avatar}
+                    alt={t.name}
+                    width={48}
+                    height={48}
+                    className="rounded-full"
+                  />
+                  <h4 className="text-lg font-bold">{t.name}</h4>
+                </div>
+                <p className="text-sm text-gray-300 italic">“{t.comment}”</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-gradient-to-br from-black to-purple-900 text-white py-20 px-6">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-12">GameVerse At a Glance</h2>
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              { label: 'Active Players', value: '120K+' },
+              { label: 'NFTs Minted', value: '89,000' },
+              { label: 'Guilds Formed', value: '430+' },
+              { label: 'Monthly Battles', value: '1.4M+' }
+            ].map((stat, i) => (
+              <div key={i}>
+                <h3 className="text-3xl font-bold text-purple-400">{stat.value}</h3>
+                <p className="text-sm text-gray-300 mt-1">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
