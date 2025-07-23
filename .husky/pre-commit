@@ -1,4 +1,7 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+eslint --fix
+prettier --check
+tsc --noEmit
 npm run lint
